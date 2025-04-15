@@ -1,3 +1,4 @@
+
 export type QueryParams = Record<string, string | number | number[] | boolean | boolean[] | undefined | null>;
 
 export interface APIError {
@@ -5,4 +6,5 @@ export interface APIError {
   message?: string;
   errorCode?: string;
   statusCode: number;
+  detail?: string;
 }

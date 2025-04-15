@@ -1,7 +1,8 @@
+import { ThemeModeScript } from "flowbite-react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeModeScript } from "flowbite-react";
 import "./globals.css";
+import Providers from "./Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,13 @@ export default function RootLayout({
       <head>
         <ThemeModeScript />
       </head>
-      <body className={inter.className}>{children}</body>
+
+      <body className={inter.className}>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
+
     </html>
   );
 }

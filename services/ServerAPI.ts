@@ -1,12 +1,13 @@
-import { AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosRequestConfig } from "axios";
 import axiosInstance from "./axiosInstance";
 
 export const ServerAPI = {
   get: async <T>(
     url: string,
     config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<T>> => {
-    return axiosInstance.get<T>(url, config);
+  ): Promise<T> => {
+    const res = await axiosInstance.get<T>(url, config);
+    return res.data;
   },
 
   post: async <T, U>(
@@ -14,7 +15,7 @@ export const ServerAPI = {
     data?: U,
     config?: AxiosRequestConfig,
   ): Promise<T> => {
-    
+
     const res = await axiosInstance.post<T>(url, data, config);
     return res.data;
   },

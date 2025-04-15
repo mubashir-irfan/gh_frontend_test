@@ -1,12 +1,14 @@
-import {
-  useQuery,
-  useMutation,
-  UseQueryResult,
-  UseQueryOptions,
-} from '@tanstack/react-query';
-import axios, { AxiosError, AxiosHeaderValue, AxiosResponse } from 'axios';
-import {QueryParams, APIError} from '@/types'
+'use client'
+
 import { ServerAPI } from '@/services';
+import { APIError, QueryParams } from '@/types';
+import {
+  useMutation,
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { AxiosError, AxiosHeaderValue, AxiosResponse } from 'axios';
 
 export const useGet = <T>(
   url: string,
