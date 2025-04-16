@@ -8,3 +8,12 @@ export interface APIError {
   statusCode: number;
   detail?: string;
 }
+
+export type {
+  ProfitDistribution,
+  Financials,
+  Stats,
+  Change,
+  Period,
+  AccountantData
+} from './dashboard'

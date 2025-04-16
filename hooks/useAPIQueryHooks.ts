@@ -22,7 +22,7 @@ export const useGet = <T>(
 ): UseQueryResult<T, AxiosError<APIError>> => {
   return useQuery<AxiosResponse, AxiosError<APIError>, T, [string, QueryParams?]>({
     queryKey: params ? [queryKey, params] : [queryKey],
-    queryFn: async () => await ServerAPI.get(url),
+    queryFn: async () => await ServerAPI.get(url, { ...params }),
     enabled: enabled,
     ...queryOptions,
   });

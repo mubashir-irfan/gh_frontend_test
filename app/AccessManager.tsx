@@ -1,4 +1,5 @@
 'use client'
+
 import { useAuth } from "@/context";
 import { LocalStorageService, SessionStorageService } from "@/services";
 import { FullPageSpinner } from "@/shared/components";
@@ -28,7 +29,6 @@ const AccessManager = ({ children }: Props) => {
     if (!isResolvingAuthN) {
       if (isAuthenticated) redirectSafelyTo('/dashboard')
       else redirectSafelyTo(ROUTES.auth.login())
-
     }
   }, [isAuthenticated, isResolvingAuthN])
 

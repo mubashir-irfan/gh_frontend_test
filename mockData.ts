@@ -1,10 +1,10 @@
-const mockAccountsData = {
+export const mockAccountsData = {
   "stats": {
     "outstanding_invoices": 475,
     "average_collection_period": "04:14",
     "gross_profit_margin": 657800,
     "inventory_turnover": "04:14",
-    "online_payments": 40
+    "online_payments": 40,
   },
   "financials": {
     "revenue": 163400.0,
@@ -19,7 +19,7 @@ const mockAccountsData = {
   "change": {
     "outstanding_invoices": 1.4,
     "average_collection_period": 1.4,
-    "gross_profit_margin": 1.4,
+    "gross_profit_margin": -1.4,
     "inventory_turnover": 1.4,
     "online_payments": 1.4,
     "revenue": -2.4,
@@ -32,12 +32,65 @@ const mockAccountsData = {
   }
 }
 
-const mockPlGrapthData = {
+export const mockAccountsEmpty = {
+  "stats": {
+    "outstanding_invoices": 0,
+    "average_collection_period": "0",
+    "gross_profit_margin": 0,
+    "inventory_turnover": "0",
+    "online_payments": 0
+  },
+  "financials": {
+    "revenue": 0,
+    "expenses": 0,
+    "stock_value": 0,
+    "profit_distribution": {}
+  },
+  "change": {
+    "outstanding_invoices": 0,
+    "average_collection_period": 0,
+    "gross_profit_margin": 0,
+    "inventory_turnover": 0,
+    "online_payments": 0,
+    "revenue": 0,
+    "expenses": 0,
+    "stock_value": 0
+  },
+  "period": {
+    "start": "2025-04-01",
+    "end": "2025-05-02"
+  }
+}
+
+
+export const mockPlGrapthData = {
   "profit": 1000,
   "loss": 500
 }
 
-const mockInvoicesData = {
+export const mockFinancialSummary = {
+  "total_profit": 5112.226794174866,
+  "total_sales": 26307.357661642454,
+  "total_expenses": 19877.86243344744,
+  "profit_rate": 36.17632208833868,
+  "time_period": "last month",
+  "monthly_data": [
+    {
+      "month": "January",
+      "sales": 2405.043665372188,
+      "expenses": 1971.7746508408163,
+      "profit": 852.0385957360318
+    },
+    {
+      "month": "February",
+      "sales": 2217.150156480256,
+      "expenses": 1612.1542874258184,
+      "profit": 819.0840218080687
+    }
+  ]
+}
+
+export const mockInvoicesData = {
   "data": [
     {
       "id": "INV-001",
@@ -100,7 +153,7 @@ const mockInvoicesData = {
   "page_size": 10
 }
 
-const mockReceiptsData = {
+export const mockReceiptsData = {
   "data": [
     {
       "id": "REC-001",
@@ -148,6 +201,50 @@ const mockReceiptsData = {
   "page_size": 10
 }
 
+export const mockInventory = {
+  "data": [
+    {
+      "id": "ITM-001",
+      "item_name": "Brake Pads",
+      "category": "Parts",
+      "stock_level": 100,
+      "unit_price": 50,
+      "total_value": 3000,
+      "status": "In Stock"
+    },
+    {
+      "id": "ITM-002",
+      "item_name": "Engine Oil",
+      "category": "Fluids",
+      "stock_level": 20,
+      "unit_price": 50,
+      "total_value": 1000,
+      "status": "Low Stock"
+    },
+    {
+      "id": "ITM-003",
+      "item_name": "Air Filter",
+      "category": "Parts",
+      "stock_level": 0,
+      "unit_price": 20,
+      "total_value": 0,
+      "status": "Out of Stock"
+    },
+    {
+      "id": "ITM-004",
+      "item_name": "Spark Plugs",
+      "category": "Accessories",
+      "stock_level": 200,
+      "unit_price": 5,
+      "total_value": 650,
+      "status": "In Stock"
+    }
+  ],
+  "total": 4,
+  "page": 1,
+  "page_size": 10
+}
+
 /**
  * 
 data : []
@@ -156,32 +253,18 @@ page_size: 10
 total: 0
  */
 
-const mockAccountsEmpty = {
-  "stats": {
-    "outstanding_invoices": 0,
-    "average_collection_period": "0",
-    "gross_profit_margin": 0,
-    "inventory_turnover": "0",
-    "online_payments": 0
-  },
-  "financials": {
-    "revenue": 0,
-    "expenses": 0,
-    "stock_value": 0,
-    "profit_distribution": {}
-  },
-  "change": {
-    "outstanding_invoices": 0,
-    "average_collection_period": 0,
-    "gross_profit_margin": 0,
-    "inventory_turnover": 0,
-    "online_payments": 0,
-    "revenue": 0,
-    "expenses": 0,
-    "stock_value": 0
-  },
-  "period": {
-    "start": "2025-04-01",
-    "end": "2025-05-02"
-  }
+export const mockInventoryEmpty = {
+  "data": [],
+  "total": 0,
+  "page": 1,
+  "page_size": 10
+}
+
+export const mockFinancialSummaryEmpty = {
+  "total_profit": 0,
+  "total_sales": 0,
+  "total_expenses": 0,
+  "profit_rate": 0,
+  "time_period": "last month",
+  "monthly_data": []
 }

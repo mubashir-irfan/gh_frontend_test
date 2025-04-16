@@ -24,6 +24,9 @@ const config: Config = {
           900: "#6F1212",
           950: "#570C0C",
         },
+        gray: {
+          500: '#6B7280'
+        },
         akcent: '#F9FAFB'
       },
     },
