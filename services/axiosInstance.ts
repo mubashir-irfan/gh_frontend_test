@@ -1,3 +1,5 @@
+'use client'
+
 import { LocalStorageService, SessionStorageService } from "@/services";
 import { ACCESS_TOKEN_STORAGE_KEY, REFRESH_TOKEN_STORAGE_KEY, REMEMBER_USER_STORAGE_KEY } from "@/utils/constants";
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
@@ -16,7 +18,7 @@ const axiosInstance: AxiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // Attach Auth Bearer header
-    const accessToken = LocalStorageService.get('access_token');
+    const accessToken = SessionStorageService.get(ACCESS_TOKEN_STORAGE_KEY) ?? LocalStorageService.get(ACCESS_TOKEN_STORAGE_KEY);
     if (accessToken && config.headers) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
@@ -39,6 +41,7 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
     if (error.response?.status === 401 && !originalRequest._retry) {
+      console.log('[debug] Axios Instance ran into the case of getting a new access token using refresh token')
       originalRequest._retry = true; // Prevent infinite retry loops
 
       try {
@@ -49,16 +52,14 @@ axiosInstance.interceptors.response.use(
           return Promise.reject(error);
         }
 
-        const refreshResponse = await axios.post('/login/refresh-token', {
+        const refreshResponse = await axios.post('/user/login/refresh_token', {
           refreshToken: refreshToken,
         }, { baseURL: 'https://gh-frontend-dev-test-574648524742.us-central1.run.app/api/v1' });
 
-        const newAccessToken = refreshResponse.data.accessToken;
-        const newRefreshToken = refreshResponse.data.refreshToken;
+        const newAccessToken = refreshResponse.data.access_token;
 
         // Update tokens in storage
         LocalStorageService.set(ACCESS_TOKEN_STORAGE_KEY, newAccessToken);
-        LocalStorageService.set(REFRESH_TOKEN_STORAGE_KEY, newRefreshToken);
 
         // Retry the original request with the new access token
         originalRequest.headers = {

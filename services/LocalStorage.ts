@@ -29,9 +29,11 @@ const LocalStorageService = {
   },
 
 
-  clear: (keys: string[]) => {
-    if (typeof window !== 'undefined') {
-      keys.forEach((key: string) => localStorage.removeItem(key));
+  clear: () => {
+    try {
+      localStorage.clear();
+    } catch (error) {
+      console.error(`Error clearing local storage:`, error);
     }
   },
 };

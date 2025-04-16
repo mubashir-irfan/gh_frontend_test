@@ -1,12 +1,12 @@
-import { AxiosRequestConfig } from "axios";
+import { AxiosHeaderValue, AxiosRequestConfig } from "axios";
 import axiosInstance from "./axiosInstance";
 
 export const ServerAPI = {
   get: async <T>(
     url: string,
-    config?: AxiosRequestConfig,
+    customHeaders?: Record<string, AxiosHeaderValue>,
   ): Promise<T> => {
-    const res = await axiosInstance.get<T>(url, config);
+    const res = await axiosInstance.get<T>(url, { headers: { ...customHeaders } });
     return res.data;
   },
 

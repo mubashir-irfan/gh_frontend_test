@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { ROUTES, ENDPOINTS } from "@/utils";
 import { usePost } from "@/hooks/useAPIQueryHooks";
 import { IOTPAPIResponse } from "@/types/auth";
+import { useAuth } from "@/context";
 
 type OTPVerificationPayload = {
   email: string;
@@ -17,6 +18,7 @@ type OTPVerificationPayload = {
 }
 
 export function EmailVerificationOTPForm() {
+  const { setUser } = useAuth()
   const [isCheckingSession, setISCheckingSession] = useState<boolean>(true);
   const [email, setEmail] = useState<string | null>(null)
   const [otp, setOtp] = useState<string[]>(Array(6).fill('')); // Initialize with 6 empty strings
@@ -70,6 +72,7 @@ export function EmailVerificationOTPForm() {
       SessionStorageService.set(ACCESS_TOKEN_STORAGE_KEY, access_token)
       SessionStorageService.set(REFRESH_TOKEN_STORAGE_KEY, refresh_token)
     }
+    setUser(user)
   }, (error) => {
     console.error('Error', error)
     setError('Failed to verify code')

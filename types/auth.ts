@@ -21,3 +21,8 @@ export interface IOTPAPIResponse {
   refresh_token: string;
   user: IUser;
 }
+
+export interface IRefreshAPIResponse {
+  access_token: string;
+  user: IUser;
+}

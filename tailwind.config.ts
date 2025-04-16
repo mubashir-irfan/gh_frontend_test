@@ -24,6 +24,7 @@ const config: Config = {
           900: "#6F1212",
           950: "#570C0C",
         },
+        akcent: '#F9FAFB'
       },
     },
   },
