@@ -1,10 +1,10 @@
 'use client'
 
-import { LocalStorageService, ServerAPI, SessionStorageService } from '@/services';
+import { useGet } from '@/hooks/useAPIQueryHooks';
+import { LocalStorageService, SessionStorageService } from '@/services';
 import { IRefreshAPIResponse, IUser } from '@/types/auth';
 import { ACCESS_TOKEN_STORAGE_KEY } from '@/utils';
-import { REFRESH_TOKEN_STORAGE_KEY } from '@/utils/constants';
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
   user: IUser | null;
@@ -20,38 +20,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<any | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isResolvingAuthN, setIsResolvingAuthN] = useState<boolean>(true);
-
   const accessToken = SessionStorageService.get(ACCESS_TOKEN_STORAGE_KEY) ?? LocalStorageService.get(ACCESS_TOKEN_STORAGE_KEY);
 
-  useEffect(() => {
-    if (accessToken) {
-      ServerAPI.get<IRefreshAPIResponse>('/user/login/refresh_token', {
-        'token': accessToken
-      }).then((response) => {
-        console.log('[debug] AuthContext, refresh api user data sucess', response)
-        setUser(response.user);
-      }).catch((error) => {
-        console.error("error fetching user data", error);
-
-        SessionStorageService.clear();
-        LocalStorageService.clear();
-        setUser(null);
-        setIsAuthenticated(false);
-        setIsResolvingAuthN(false)
-      });
-    } else {
-      setIsAuthenticated(false);
-      setIsResolvingAuthN(false)
-    }
-  }, [accessToken]);
-
+  const { data: userData, isSuccess: isGettingUserDataSuccess, isError: isGettingUserDataError } = useGet<IRefreshAPIResponse>('/user/login/refresh_token', 'user-refresh-token', !!accessToken)
 
   useEffect(() => {
-    if (user) {
+    if (isGettingUserDataSuccess) {
+      setUser(userData.user)
       setIsAuthenticated(true);
       setIsResolvingAuthN(false)
     }
-  }, [user])
+    else if (isGettingUserDataError) {
+      SessionStorageService.clear();
+      LocalStorageService.clear();
+      setUser(null);
+      setIsAuthenticated(false);
+      setIsResolvingAuthN(false);
+    }
+  }, [userData])
+
+  useEffect(() => {
+    if (!accessToken) {
+      setUser(null);
+      setIsAuthenticated(false);
+      setIsResolvingAuthN(false);
+    }
+  }, [accessToken])
 
   const logout = () => {
     //todo: make the actual logout call

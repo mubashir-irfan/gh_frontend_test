@@ -1,12 +1,14 @@
 import { AxiosHeaderValue, AxiosRequestConfig } from "axios";
 import axiosInstance from "./axiosInstance";
+import { QueryParams } from "@/types";
 
 export const ServerAPI = {
   get: async <T>(
     url: string,
+    params?: QueryParams,
     customHeaders?: Record<string, AxiosHeaderValue>,
   ): Promise<T> => {
-    const res = await axiosInstance.get<T>(url, { headers: { ...customHeaders } });
+    const res = await axiosInstance.get<T>(url, { headers: { ...customHeaders }, params });
     return res.data;
   },
 

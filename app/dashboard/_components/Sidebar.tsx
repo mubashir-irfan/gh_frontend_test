@@ -2,9 +2,8 @@
 'use client'
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { HiChartSquareBar } from 'react-icons/hi';
-import NavDrawer from './NavDrawer'; // Import the new NavDrawer component
 import { AiOutlineHome } from "react-icons/ai";
+import NavDrawer from './NavDrawer'; // Import the new NavDrawer component
 interface SidebarProps {
   isDrawerOpen: boolean;
 }
