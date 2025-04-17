@@ -1,7 +1,8 @@
 'use client'
+import { useGet } from "@/hooks/useAPIQueryHooks";
 import { formatCurrency } from "@/libs/utils";
 import { mockInvoicesData } from "@/mockData";
-import { Badge, Table } from "@/shared/components";
+import { Badge, Table } from "@/components/ui";
 
 const INVOICE_TYPES = {
   insurance: 'Insurance',
@@ -59,6 +60,7 @@ const getInvoiceStatusStyles = (status: string) => {
 
 
 const InvoiceTable = () => {
+  const { data: invoices } = useGet('dashboard/accountant/invoices', 'dashboard/invoices')
   const columns = [
     { key: 'id', header: 'Invoice ID' },
     { key: 'customer_name', header: 'Customer Name' },

@@ -1,4 +1,4 @@
-import { DeltaTag } from "@/components";
+import { DeltaTag } from "@/components/ui";
 import { formatCurrency } from "@/libs/utils";
 
 type Props = {

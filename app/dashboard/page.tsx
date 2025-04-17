@@ -18,6 +18,17 @@ export default function Dashboard() {
       <StatsBreakDown breakdown={mockAccountsData} />
     </section>
 
+    <section className="flex gap-2">
+      <section>
+
+      </section>
+
+      <section className="flex flex-col gap-4">
+
+      </section>
+
+    </section>
+
     <section className="bg-white border border-gray-200 rounded-lg shadow-sm">
       <InvoiceTable />
     </section>

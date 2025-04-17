@@ -1,6 +1,6 @@
 'use client';
 import { LocalStorageService, SessionStorageService } from "@/services";
-import { FullPageSpinner } from "@/shared/components";
+import { FullPageSpinner } from "@/components/ui";
 import { EMAIL_SESSION_STORAGE_KEY, OTP_TIMESTAMP_SESSION_STORAGE_KEY } from "@/utils";
 import { ACCESS_TOKEN_STORAGE_KEY, OTP_VERIFICATION_MILLISECONDS, REFRESH_TOKEN_STORAGE_KEY, REMEMBER_USER_STORAGE_KEY, USER_TYPE_STORAGE_KEY } from "@/libs/constants";
 import { Button } from "flowbite-react";
@@ -17,7 +17,7 @@ type OTPVerificationPayload = {
   otp: string;
 }
 
-export function EmailVerificationOTPForm() {
+function EmailVerificationOTPForm() {
   const { setUser } = useAuth()
   const [isCheckingSession, setISCheckingSession] = useState<boolean>(true);
   const [email, setEmail] = useState<string | null>(null)
@@ -327,3 +327,5 @@ export function EmailVerificationOTPForm() {
     </section>
   );
 }
+
+export default EmailVerificationOTPForm;

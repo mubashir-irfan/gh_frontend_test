@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Paginator, SearchInput, SecondaryButton } from '.';
 import { PaginatedData } from '@/types';
 import { FiRefreshCw } from 'react-icons/fi';
-import { FaFileExport } from 'react-icons/fa6';
+import { FaFileExport, FaFilter } from 'react-icons/fa6';
 
 interface ColumnConfig<T> {
   key: keyof T;
@@ -48,7 +48,7 @@ const Table = <T extends Record<string, any>>({
           <div>
             <SearchInput onSearch={onSearch} placeholder="Search Invoices" />
           </div>
-          <SecondaryButton label='Filters' onClick={() => { }} />
+          <SecondaryButton label='Filters' onClick={() => { }} Icon={<FaFilter />} />
         </div>
 
         <div className='flex gap-2'>

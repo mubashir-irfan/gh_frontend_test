@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/context";
 import { LocalStorageService, SessionStorageService } from "@/services";
-import { FullPageSpinner } from "@/shared/components";
+import { FullPageSpinner } from "@/components/ui";
 import { ACCESS_TOKEN_STORAGE_KEY, ROUTES } from "@/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";

@@ -1,5 +1,5 @@
 import { formatCurrency } from "@/libs/utils"
-import { BrickChart } from "@/shared/components"
+import { BrickChart } from "@/components/ui"
 import { AccountantData } from "@/types"
 
 type Props = {

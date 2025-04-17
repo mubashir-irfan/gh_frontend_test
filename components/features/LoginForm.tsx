@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { LocalStorageService, SessionStorageService } from "@/services";
 import { validateEmail, validatePassword } from "@/utils/validation";
-import { FullPageSpinner } from "@/shared/components";
+import { FullPageSpinner } from "@/components/ui";
 import { EMAIL_SESSION_STORAGE_KEY, OTP_TIMESTAMP_SESSION_STORAGE_KEY } from "@/utils";
 import { OTP_VERIFICATION_MILLISECONDS, REMEMBER_USER_STORAGE_KEY, USER_TYPE_STORAGE_KEY } from "@/libs/constants";
 import { ROUTES, ENDPOINTS } from "@/utils";
@@ -18,7 +18,7 @@ interface LoginPayload {
   password: string;
 }
 
-export function LoginForm() {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isCheckingSession, setISCheckingSession] = useState<boolean>(true);
@@ -179,3 +179,4 @@ export function LoginForm() {
     </section>
   );
 }
+export default LoginForm;

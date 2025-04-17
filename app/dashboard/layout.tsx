@@ -13,15 +13,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const { data: financialSummary } = useGet('dashboard/accountant/financial-summary', 'dashboard/financial-summary', true, {
     period: 'last month'
   })
-  const { data: invoices } = useGet('dashboard/accountant/invoices', 'dashboard/invoices')
+
   const { data: receipts } = useGet('dashboard/accountant/receipts', 'dashboard/receipts')
   const { data: plGraph } = useGet('dashboard/accountant/pl-graph', 'dashboard/pl-graph')
   const { data: invetory } = useGet('dashboard/accountant/inventory', 'dashboard/inventory')
   const { data: monthlyTarget } = useGet('dashboard/shared/monthly_target', 'shared/monthly_target')
 
-  const mockAccountant: AccountantData = mockAccountsData;
-
-  console.log('debug', { mockAccountant })
 
   return <div className="h-screen w-screen flex flex-col">
     <header className="min-h-[64px] border-b border-gray-200">

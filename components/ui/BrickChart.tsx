@@ -9,11 +9,11 @@ const BrickChart = ({ bricks }: Props) => {
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      <div className="flex w-full rounded overflow-hidden bg-purple-500" style={{ height: '20px' }}>
+      <div className="flex w-full rounded overflow-hidden" style={{ height: '20px' }}>
         {bricks.map((brick) => (
           <div
             key={brick.label}
-            className={`${brick.color} h-[16px]`}
+            className={`${brick.color}`}
             style={{ width: `${(brick.value / total) * 100}%` }}
             title={`${brick.label}: ${brick.value}`}
           />

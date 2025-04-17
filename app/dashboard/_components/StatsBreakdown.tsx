@@ -1,9 +1,9 @@
-import { Stat, StatGrpah } from "@/components"
+import { Stat, StatGrpah } from "@/components/ui"
 import { defaultStatValues } from "@/libs/constants"
 import { AccountantData } from "@/types"
 import { STAT_LABELS } from "@/types/dashboard"
 import ProfitDistribution from "./ProfitDistribution"
-import { SecondaryButton } from "@/shared/components"
+import { SecondaryButton } from "@/components/ui"
 
 type Props = {
   breakdown: AccountantData
