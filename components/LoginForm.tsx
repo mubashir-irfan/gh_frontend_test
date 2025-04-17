@@ -7,7 +7,7 @@ import { LocalStorageService, SessionStorageService } from "@/services";
 import { validateEmail, validatePassword } from "@/utils/validation";
 import { FullPageSpinner } from "@/shared/components";
 import { EMAIL_SESSION_STORAGE_KEY, OTP_TIMESTAMP_SESSION_STORAGE_KEY } from "@/utils";
-import { OTP_VERIFICATION_MILLISECONDS, REMEMBER_USER_STORAGE_KEY, USER_TYPE_STORAGE_KEY } from "@/utils/constants";
+import { OTP_VERIFICATION_MILLISECONDS, REMEMBER_USER_STORAGE_KEY, USER_TYPE_STORAGE_KEY } from "@/libs/constants";
 import { ROUTES, ENDPOINTS } from "@/utils";
 import { APIError } from "@/types";
 import { AxiosError } from "axios";

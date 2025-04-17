@@ -1,7 +1,7 @@
 'use client'
 
 import { LocalStorageService, SessionStorageService } from "@/services";
-import { ACCESS_TOKEN_STORAGE_KEY, REFRESH_TOKEN_STORAGE_KEY, REMEMBER_USER_STORAGE_KEY } from "@/utils/constants";
+import { ACCESS_TOKEN_STORAGE_KEY, REFRESH_TOKEN_STORAGE_KEY, REMEMBER_USER_STORAGE_KEY } from "@/libs/constants";
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
 
 const axiosInstance: AxiosInstance = axios.create({

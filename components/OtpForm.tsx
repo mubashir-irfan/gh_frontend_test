@@ -2,7 +2,7 @@
 import { LocalStorageService, SessionStorageService } from "@/services";
 import { FullPageSpinner } from "@/shared/components";
 import { EMAIL_SESSION_STORAGE_KEY, OTP_TIMESTAMP_SESSION_STORAGE_KEY } from "@/utils";
-import { ACCESS_TOKEN_STORAGE_KEY, OTP_VERIFICATION_MILLISECONDS, REFRESH_TOKEN_STORAGE_KEY, REMEMBER_USER_STORAGE_KEY, USER_TYPE_STORAGE_KEY } from "@/utils/constants";
+import { ACCESS_TOKEN_STORAGE_KEY, OTP_VERIFICATION_MILLISECONDS, REFRESH_TOKEN_STORAGE_KEY, REMEMBER_USER_STORAGE_KEY, USER_TYPE_STORAGE_KEY } from "@/libs/constants";
 import { Button } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";

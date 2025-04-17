@@ -3,6 +3,7 @@ import { defaultStatValues } from "@/libs/constants"
 import { AccountantData } from "@/types"
 import { STAT_LABELS } from "@/types/dashboard"
 import ProfitDistribution from "./ProfitDistribution"
+import { SecondaryButton } from "@/shared/components"
 
 type Props = {
   breakdown: AccountantData
@@ -14,7 +15,7 @@ const StatsBreakDown = ({ breakdown }: Props) => {
   if (!profitDistribution) return null;
 
   return (
-    <div className="p-4 flex flex-col gap-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+    <div className="p-4 flex flex-col gap-4">
       <div className="flex gap-16 pb-4 border-b border-gray-200">
         {(Object.keys(breakdown.stats) as (keyof typeof STAT_LABELS)[]).map((key: keyof typeof STAT_LABELS) => (
           <Stat
@@ -46,7 +47,7 @@ const StatsBreakDown = ({ breakdown }: Props) => {
       </div>
 
       <div>
-        <button type="button" className="text-gray-800 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:ring-red-400 font-medium rounded-lg text-sm px-4 py-1.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-red-400">View Financial reports</button>
+        <SecondaryButton label="View Financial Reports" onClick={() => { }}></SecondaryButton>
       </div>
     </div>
   )

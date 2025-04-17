@@ -62,7 +62,6 @@ export const mockAccountsEmpty = {
   }
 }
 
-
 export const mockPlGrapthData = {
   "profit": 1000,
   "loss": 500

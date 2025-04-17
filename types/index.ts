@@ -9,6 +9,13 @@ export interface APIError {
   detail?: string;
 }
 
+export type PaginatedData<T> = {
+  data: T[];
+  total: number;
+  page: number;
+  page_size: number;
+}
+
 export type {
   ProfitDistribution,
   Financials,
