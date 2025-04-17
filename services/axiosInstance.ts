@@ -5,7 +5,7 @@ import { ACCESS_TOKEN_STORAGE_KEY, REFRESH_TOKEN_STORAGE_KEY, REMEMBER_USER_STOR
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'https://gh-frontend-dev-test-574648524742.us-central1.run.app/api/v1',
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
   headers: {
     'Content-Type': 'application/json',
     'api_key': process.env.NEXT_PUBLIC_BACKEND_API_V1_KEY,
@@ -43,11 +43,11 @@ axiosInstance.interceptors.response.use(
 
         if (!refreshToken) {
           console.error('No refresh token available.');
-          window.location.href = '/login';
+          if (window) window.location.href = '/login';
           return Promise.reject(error);
         }
 
-        const refreshResponse = await axios.get('https://gh-frontend-dev-test-574648524742.us-central1.run.app/api/v1/user/login/refresh_token', {
+        const refreshResponse = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/login/refresh_token`, {
           headers: {
             token: refreshToken,
             'api_key': process.env.NEXT_PUBLIC_BACKEND_API_V1_KEY
@@ -66,7 +66,7 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         console.error('Refresh token failed:', refreshError);
-        window.location.href = '/login';
+        if (window) window.location.href = '/login';
         return Promise.reject(refreshError);
       }
 
