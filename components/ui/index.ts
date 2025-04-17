@@ -9,3 +9,5 @@ export { default as Table } from './Table';
 export { default as SearchInput } from './SearchInput'
 export { default as SecondaryButton } from './SecondaryButton'
 export { default as Badge } from './Badge';
+
+export { default as GroupedHorizontalBarChart } from './GroupedHorizontalBarChart'

@@ -1,8 +1,9 @@
 'use client'
 import { useAuth } from "@/context";
-import { mockAccountsData, mockInvoicesData } from "@/mockData";
-import StatsBreakDown from "./_components/StatsBreakdown";
+import { mockAccountsData } from "@/mockData";
 import InvoiceTable from "./_components/InvoicesTable";
+import StatsBreakDown from "./_components/StatsBreakdown";
+import SalesExpensesBarChart from "./_components/SalesExpensesBarChart";
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -19,8 +20,8 @@ export default function Dashboard() {
     </section>
 
     <section className="flex gap-2">
-      <section>
-
+      <section className="flex-grow">
+        <SalesExpensesBarChart />
       </section>
 
       <section className="flex flex-col gap-4">
