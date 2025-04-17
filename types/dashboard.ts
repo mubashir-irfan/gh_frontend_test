@@ -51,7 +51,9 @@ export enum STAT_LABELS {
   online_payments = 'Online Payments',
   revenue = 'Revenue',
   expenses = 'Expenses',
-  stock_value = 'Stock value'
+  stock_value = 'Stock value',
+  profit = 'Profit',
+  assets = 'Assets'
 }
 
 export type StatLabelKeys = keyof typeof STAT_LABELS;
