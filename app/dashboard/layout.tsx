@@ -5,7 +5,7 @@ import { AccountantData } from "@/types";
 import { ENDPOINTS } from "@/utils";
 import Image from "next/image";
 import { ReactNode } from "react";
-import Sidebar from "./_components/Sidebar";
+import Sidebar from "./Sidebar";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
 

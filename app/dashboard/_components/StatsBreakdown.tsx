@@ -1,7 +1,5 @@
 import { Stat, StatGrpah } from "@/components"
 import { defaultStatValues } from "@/libs/constants"
-import { formatCurrency } from "@/libs/utils"
-import { BrickChart } from "@/shared/components"
 import { AccountantData } from "@/types"
 import { STAT_LABELS } from "@/types/dashboard"
 import ProfitDistribution from "./ProfitDistribution"
@@ -17,7 +15,6 @@ const StatsBreakDown = ({ breakdown }: Props) => {
 
   return (
     <div className="p-4 flex flex-col gap-4 bg-white border border-gray-200 rounded-lg shadow-sm">
-
       <div className="flex gap-16 pb-4 border-b border-gray-200">
         {(Object.keys(breakdown.stats) as (keyof typeof STAT_LABELS)[]).map((key: keyof typeof STAT_LABELS) => (
           <Stat

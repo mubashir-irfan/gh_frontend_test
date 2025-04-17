@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { AiOutlineHome } from "react-icons/ai";
-import NavDrawer from './NavDrawer'; // Import the new NavDrawer component
+import NavDrawer from './NavDrawer';
 interface SidebarProps {
   isDrawerOpen: boolean;
 }
