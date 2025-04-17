@@ -9,7 +9,7 @@ import Sidebar from "./Sidebar";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
 
-  const { data: accountsData } = useGet(ENDPOINTS.dashboard.accountant(), ENDPOINTS.dashboard.accountant())
+
   const { data: financialSummary } = useGet('dashboard/accountant/financial-summary', 'dashboard/financial-summary', true, {
     period: 'last month'
   })

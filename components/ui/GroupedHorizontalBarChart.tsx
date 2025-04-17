@@ -101,17 +101,15 @@ const GroupedHorizontalBarChart = ({ series, categories }: Props) => {
 
   useEffect(() => {
     if (chartRef.current && !isChartRendered.current) {
-      console.log('debug group horizontal component drawing chart', series, categories)
       chartInstance.current = new ApexCharts(chartRef.current, options);
       chartInstance.current.render();
-      isChartRendered.current = true; // Mark the chart as rendered
-      console.log('effect done drawing chart')
+      isChartRendered.current = true;
     }
 
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();
-        isChartRendered.current = false; // Reset the flag on unmount
+        isChartRendered.current = false;
       }
     };
   }, [options]);

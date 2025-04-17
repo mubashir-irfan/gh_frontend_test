@@ -11,19 +11,19 @@ const ProfitDistribution = ({ profitDistribution }: Props) => {
     <div className="flex justify-between">
       <div className="flex flex-col gap-1 text-sm text-gray-500">
         <p>Profit</p>
-        <p className="text-xl font-bold text-gray-900">{profitDistribution.profit}%</p>
+        <p className="text-xl font-bold text-gray-900">{profitDistribution.profit ?? 0}%</p>
         <p>{formatCurrency(profitDistribution.profit)}</p>
       </div>
 
       <div className="flex flex-col gap-1 text-sm text-gray-500">
         <p>Expenses</p>
-        <p className="text-xl font-bold text-gray-900">{profitDistribution.expenses}%</p>
+        <p className="text-xl font-bold text-gray-900">{profitDistribution.expenses ?? 0}%</p>
         <p>{formatCurrency(profitDistribution.expenses)}</p>
       </div>
 
       <div className="flex flex-col gap-1 text-sm text-gray-500">
         <p>Assets</p>
-        <p className="text-xl font-bold text-gray-900">{profitDistribution.assets}%</p>
+        <p className="text-xl font-bold text-gray-900">{profitDistribution.assets ?? 0}%</p>
         <p>{formatCurrency(profitDistribution.assets)}</p>
       </div>
 

@@ -15,12 +15,12 @@ export default function Dashboard() {
       })}</p>
     </div>
 
-    <section className="bg-white border border-gray-200 rounded-lg shadow-sm">
-      <StatsBreakDown breakdown={mockAccountsData} />
+    <section className="bg-white rounded-lg shadow-sm">
+      <StatsBreakDown />
     </section>
 
     <section className="flex gap-2">
-      <section className="flex-grow">
+      <section className="flex-grow shadow-sm">
         <SalesExpensesBarChart />
       </section>
 
@@ -30,7 +30,7 @@ export default function Dashboard() {
 
     </section>
 
-    <section className="bg-white border border-gray-200 rounded-lg shadow-sm">
+    <section className="bg-white rounded-lg shadow-sm">
       <InvoiceTable />
     </section>
   </section >

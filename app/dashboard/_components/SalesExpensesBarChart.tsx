@@ -56,7 +56,6 @@ const SalesExpensesBarChart = () => {
         </dl>
       </div>
       <div><GroupedHorizontalBarChart series={salesAndExpensesSeries} categories={categories} /></div>
-
     </div>
   )
 }

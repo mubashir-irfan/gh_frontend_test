@@ -41,6 +41,13 @@ const Table = <T extends Record<string, any>>({
 
   const totalPages = Math.ceil(paginatedData.total / paginatedData.page_size);
 
+  const getPageMessage = () => {
+    const { page, page_size, total } = paginatedData;
+    const start = (page - 1) * page_size + 1;
+    const end = Math.min(page * page_size, total);
+    return <p className='text-xs mt-2'>Showing <span className='font-semibold'>{start}-{end}</span> of <span className='font-semibold'>{total}</span></p>
+  };
+
   return (
     <div className='p-4'>
       <div className="flex justify-between items-center mb-4">
@@ -88,7 +95,8 @@ const Table = <T extends Record<string, any>>({
         </table>
       </div>
       {onPageChange && (
-        <div className='flex justify-end'>
+        <div className='flex justify-between'>
+          <p>{getPageMessage()}</p>
           <Paginator
             currentPage={paginatedData.page}
             totalPages={totalPages}
