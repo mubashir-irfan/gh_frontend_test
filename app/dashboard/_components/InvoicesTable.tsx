@@ -2,7 +2,9 @@
 import { useGet } from "@/hooks/useAPIQueryHooks";
 import { formatCurrency } from "@/libs/utils";
 import { mockInvoicesData } from "@/mockData";
-import { Badge, Table } from "@/components/ui";
+import { Badge, Spinner, Table } from "@/components/ui";
+import { PaginatedData } from "@/types";
+import { Invoice } from "@/types/dashboard";
 
 const INVOICE_TYPES = {
   insurance: 'Insurance',
@@ -60,7 +62,7 @@ const getInvoiceStatusStyles = (status: string) => {
 
 
 const InvoiceTable = () => {
-  const { data: invoices } = useGet('dashboard/accountant/invoices', 'dashboard/invoices')
+  const { data: invoices, isLoading, isError, error, refetch, isRefetching } = useGet<PaginatedData<Invoice>>('dashboard/accountant/invoices', 'dashboard/invoices')
   const columns = [
     { key: 'id', header: 'Invoice ID' },
     { key: 'customer_name', header: 'Customer Name' },
@@ -77,26 +79,30 @@ const InvoiceTable = () => {
     { key: 'payment_due_date', header: 'Payment Due Date' },
   ];
 
+
+  if (isError && error.status === 403) return <AccessDeniedView />
+
+  if (isLoading || isRefetching) return <div className="p-12 flex justify-center items-center"><Spinner /></div>
+
   const handlePageChange = (page: number) => {
     console.log('Page changed to:', page);
   };
 
   const handleRefresh = () => {
     console.log('Refresh triggered')
+    refetch();
   }
 
   const onSearch = (search: string) => {
     console.log('search for', search)
   }
 
-  const invoicesData = mockInvoicesData;
+  const invoicesData = invoices;
 
   return (
     <Table
       paginatedData={invoicesData}
       columns={columns}
-      isLoading={false}
-      isError={false}
       onPageChange={handlePageChange}
       onRefresh={handleRefresh}
       onSearch={onSearch}
@@ -105,3 +111,11 @@ const InvoiceTable = () => {
 };
 
 export default InvoiceTable;
+
+const AccessDeniedView = () => <div className="flex flex-col items-center p-8 justify-center dark:bg-gray-900 rounded-lg">
+  <div className="text-center">
+    <h1 className="text-xl font-bold text-red-600 mb-2">Access Denied</h1>
+    <p className="text-gray-400 dark:text-gray-400">You do not have permission to view this data.</p>
+    <p className="text-gray-400 dark:text-gray-400">Please contact your administrator for assistance.</p>
+  </div>
+</div>

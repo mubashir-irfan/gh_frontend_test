@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Paginator, SearchInput, SecondaryButton } from '.';
 import { PaginatedData } from '@/types';
 import { FiRefreshCw } from 'react-icons/fi';
-import { FaFileExport, FaFilter } from 'react-icons/fa6';
+import { FaClipboardList, FaFileExport, FaFilter } from 'react-icons/fa6';
 
 interface ColumnConfig<T> {
   key: keyof T;
@@ -13,8 +13,6 @@ interface ColumnConfig<T> {
 interface TableProps<T> {
   paginatedData: PaginatedData<T>;
   columns: ColumnConfig<T>[];
-  isLoading: boolean;
-  isError: boolean;
   onSearch: (query: string) => void;
   onPageChange?: (page: number) => void;
   onRefresh?: () => void;
@@ -23,25 +21,20 @@ interface TableProps<T> {
 const Table = <T extends Record<string, any>>({
   paginatedData,
   columns,
-  isLoading,
-  isError,
   onSearch,
   onPageChange,
   onRefresh,
 }: TableProps<T>) => {
+
   const [searchQuery, setSearchQuery] = useState('');
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  const isDataEmpty = paginatedData.data.length === 0;
 
-  if (isError) {
-    return <p>Error loading data.</p>;
-  }
 
   const totalPages = Math.ceil(paginatedData.total / paginatedData.page_size);
 
   const getPageMessage = () => {
+    if (isDataEmpty) return null;
     const { page, page_size, total } = paginatedData;
     const start = (page - 1) * page_size + 1;
     const end = Math.min(page * page_size, total);
@@ -53,21 +46,20 @@ const Table = <T extends Record<string, any>>({
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-2">
           <div>
-            <SearchInput onSearch={onSearch} placeholder="Search Invoices" />
+            <SearchInput onSearch={() => onSearch(searchQuery)} placeholder="Search Invoices" />
           </div>
           <SecondaryButton label='Filters' onClick={() => { }} Icon={<FaFilter />} />
         </div>
 
         <div className='flex gap-2'>
           {onRefresh && (
-            <SecondaryButton label='Refresh' Icon={<FiRefreshCw />} onClick={() => { }} />
+            <SecondaryButton label='Refresh' Icon={<FiRefreshCw />} onClick={onRefresh} />
           )}
-
           <SecondaryButton label='Export' Icon={<FaFileExport />} onClick={() => { }} />
         </div>
       </div>
 
-      <div className="relative overflow-x-auto">
+      {isDataEmpty ? <EmptyView /> : <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -93,7 +85,7 @@ const Table = <T extends Record<string, any>>({
             ))}
           </tbody>
         </table>
-      </div>
+      </div>}
       {onPageChange && (
         <div className='flex justify-between'>
           <p>{getPageMessage()}</p>
@@ -108,3 +100,11 @@ const Table = <T extends Record<string, any>>({
   );
 };
 export default Table;
+
+const EmptyView = () =>
+  <div className='w-full py-24 flex flex-col justify-center items-center gap-4'>
+    <div className='h-8 w-8 flex justify-center items-center rounded-full bg-gray-300 p-8 text-gray-500 text-2xl'>
+      <div><FaClipboardList /></div>
+    </div>
+    <p className='text-gray-400 text-sm'>There are no records available for the current period.</p>
+  </div>
